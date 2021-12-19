@@ -8,7 +8,7 @@ Stack used:
 - Postgres
 - React
 
-To run this project, follow the stepes below:
+To run this project, follow the steps below:
 
 - You must have Docker installed and running
 - Clone this repo in a Linux ou Mac machine
