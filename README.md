@@ -5,8 +5,8 @@ This is a project part of a assessment task provided by the company Collegia.
 Stack used:
 
 - Docker
-- Laravel
 - Postgres
+- Laravel
 - React
 
 To run this project, follow the steps below:
