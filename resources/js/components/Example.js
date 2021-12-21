@@ -46,7 +46,7 @@ class Example extends Component {
     submit(event,id) {
         event.preventDefault();
         if(this.state.id == 0) {
-            Axios.post('http://localhost/api/todo/store', {
+            Axios.post(`http://localhost/api/todo/store`, {
                 title: this.state.title,
                 description: this.state.description
             })
@@ -83,7 +83,7 @@ class Example extends Component {
                             <input onChange={(e) => this.titleChange(e)} value={this.state.title} />
                         </div>
                         <div className="input-field col s4">
-                            <i className="material-icons prefix">content_paste</i>
+                            <i className="material-icons prefix">description</i>
                             <input onChange={(e) => this.descriptionChange(e)} value={this.state.description} />
                         </div>
                         <br/>
@@ -91,11 +91,6 @@ class Example extends Component {
                             <button type="submit" className="waves-effect waves-light btn">Save</button>
                         </div>
                     </form>
-
-
-
-
-
                     <table>
                         <tbody>
                         <tr>
@@ -104,9 +99,25 @@ class Example extends Component {
                             <td>Edit</td>
                             <td>Delete</td>
                         </tr>
+                        {this.state.todos.map((todo) =>
+                            <tr key={todo.id}>  
+                                <td>{todo.title}</td>
+                                <td>{todo.description}</td>
+                                <td>
+                                    <button onClick={(e) => this.getOne(todo)} className="waves-effect waves-light btn">
+                                    <i className="material-icons prefix">create</i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button onClick={(e) => this.delete(todo.id)} className="waves-effect waves-light btn">
+                                    <i className="material-icons prefix">delete</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        )}
                         </tbody>
                     </table>
-                </div>"
+                </div>
             </div>
         );
     }
