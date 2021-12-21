@@ -17,7 +17,7 @@ class Example extends Component {
         this.getAll();
     }
     getAll() {
-        Axios.get(`http://localhost:8000/api/todoList`)
+        Axios.get(`http://localhost/api/todoList`)
             .then(res => {
                 this.setState({ todos: res.data,
                 id:0,
@@ -37,7 +37,7 @@ class Example extends Component {
     }
 
     delete(id){
-        Axios.delete(`http://localhost:8000/api/todo/${id}`)
+        Axios.delete(`http://localhost/api/todo/${id}`)
         .then((res) => {
             this.getAll();
         })
@@ -46,7 +46,7 @@ class Example extends Component {
     submit(event,id) {
         event.preventDefault();
         if(this.state.id == 0) {
-            Axios.post('http://localhost:8000/api/todo/store', {
+            Axios.post('http://localhost/api/todo/store', {
                 title: this.state.title,
                 description: this.state.description
             })
@@ -54,7 +54,7 @@ class Example extends Component {
                     this.getAll();
                 })
         } else {
-            Axios.put(`http://localhost:8000/api/todo/${id}`, {
+            Axios.put(`http://localhost/api/todo/${id}`, {
                 title: this.state.title,
                 description: this.state.description
             })
@@ -86,6 +86,7 @@ class Example extends Component {
                             <i className="material-icons prefix">content_paste</i>
                             <input onChange={(e) => this.descriptionChange(e)} value={this.state.description} />
                         </div>
+                        <br/>
                         <div className="col s4">
                             <button type="submit" className="waves-effect waves-light btn">Save</button>
                         </div>

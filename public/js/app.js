@@ -5354,7 +5354,7 @@ var Example = /*#__PURE__*/function (_Component) {
     value: function getAll() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default().get("http://localhost:8000/api/todoList").then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get("http://localhost/api/todoList").then(function (res) {
         _this2.setState({
           todos: res.data,
           id: 0,
@@ -5379,7 +5379,7 @@ var Example = /*#__PURE__*/function (_Component) {
     value: function _delete(id) {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default()["delete"]("http://localhost:8000/api/todo/".concat(id)).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default()["delete"]("http://localhost/api/todo/".concat(id)).then(function (res) {
         _this3.getAll();
       });
     }
@@ -5391,14 +5391,14 @@ var Example = /*#__PURE__*/function (_Component) {
       event.preventDefault();
 
       if (this.state.id == 0) {
-        axios__WEBPACK_IMPORTED_MODULE_2___default().post('http://localhost:8000/api/todo/store', {
+        axios__WEBPACK_IMPORTED_MODULE_2___default().post('http://localhost/api/todo/store', {
           title: this.state.title,
           description: this.state.description
         }).then(function (res) {
           _this4.getAll();
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_2___default().put("http://localhost:8000/api/todo/".concat(id), {
+        axios__WEBPACK_IMPORTED_MODULE_2___default().put("http://localhost/api/todo/".concat(id), {
           title: this.state.title,
           description: this.state.description
         }).then(function (res) {
@@ -5455,7 +5455,7 @@ var Example = /*#__PURE__*/function (_Component) {
                 },
                 value: this.state.description
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "col s4",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
                 type: "submit",
