@@ -10,7 +10,8 @@ class Example extends Component {
             id: 0,
             title:'',
             description: '',
-            todos: []
+            todos: [],
+            errorMessage: ''
         }
     }
     componentDidMount() {
@@ -24,8 +25,8 @@ class Example extends Component {
                 title:'',
                 description: '' });
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch(error => {
+                this.setState({ errorMessage: error.message });
             })
     }
     getOne(todo) {
@@ -74,12 +75,20 @@ class Example extends Component {
         })
     }
     render(){
+
+        error = '';
+        if(this.state.errorMessage) {
+            error = <div className="alert alert-danger">{this.state.errorMessage}</div>
+        }
+
         return (
             <div className="container">
                 <div className="row">
+                    {error}
                     <form onSubmit={(e) => this.submit(e, this.state.id)}>
                         <div className="input-field col s4">
                             <i className="material-icons prefix">input</i>
+                            
                             <input onChange={(e) => this.titleChange(e)} value={this.state.title} />
                         </div>
                         <div className="input-field col s4">
@@ -94,7 +103,7 @@ class Example extends Component {
                     <table>
                         <tbody>
                         <tr>
-                            <td>Title</td>
+                            <td>Task Title</td>
                             <td>Description</td>
                             <td>Edit</td>
                             <td>Delete</td>
