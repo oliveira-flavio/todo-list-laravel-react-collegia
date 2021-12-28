@@ -31,6 +31,7 @@ class TodoController extends Controller
 
         if($validator->fails()) {
             return $this->validationErrors($validator->errors());
+            // return response()->json(["status" => "failed", "errors" => $validator->getMessage()], 422);
         }
 
         try {

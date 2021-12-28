@@ -11,7 +11,7 @@ class Example extends Component {
             title:'',
             description: '',
             todos: [],
-            errorMessage: ''
+            message: ''
         }
     }
     componentDidMount() {
@@ -26,7 +26,8 @@ class Example extends Component {
                 description: '' });
             })
             .catch(error => {
-                this.setState({ errorMessage: error.message });
+                this.setState({ 
+                    message:  error.response.data.message });
             })
     }
     getOne(todo) {
@@ -54,6 +55,11 @@ class Example extends Component {
                 .then(res => {
                     this.getAll();
                 })
+                .catch(error => {
+                    this.setState({
+                        message: error.response.data.message
+                    });
+                })
         } else {
             Axios.put(`http://localhost/api/todo/${id}`, {
                 title: this.state.title,
@@ -61,6 +67,11 @@ class Example extends Component {
             })
                 .then(res => {
                     this.getAll();
+                })
+                .catch(error => {
+                    this.setState({
+                        message: error.response.data.message
+                    });
                 })
         }
     }
@@ -76,7 +87,7 @@ class Example extends Component {
     }
     render(){
 
-        error = '';
+        let error = '';
         if(this.state.errorMessage) {
             error = <div className="alert alert-danger">{this.state.errorMessage}</div>
         }

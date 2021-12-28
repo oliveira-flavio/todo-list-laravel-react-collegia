@@ -5339,7 +5339,8 @@ var Example = /*#__PURE__*/function (_Component) {
       id: 0,
       title: '',
       description: '',
-      todos: []
+      todos: [],
+      message: ''
     };
     return _this;
   }
@@ -5362,7 +5363,9 @@ var Example = /*#__PURE__*/function (_Component) {
           description: ''
         });
       })["catch"](function (error) {
-        console.log(error);
+        _this2.setState({
+          message: error.response.data.message
+        });
       });
     }
   }, {
@@ -5396,6 +5399,10 @@ var Example = /*#__PURE__*/function (_Component) {
           description: this.state.description
         }).then(function (res) {
           _this4.getAll();
+        })["catch"](function (error) {
+          _this4.setState({
+            message: error.response.data.message
+          });
         });
       } else {
         axios__WEBPACK_IMPORTED_MODULE_2___default().put("http://localhost/api/todo/".concat(id), {
@@ -5403,6 +5410,10 @@ var Example = /*#__PURE__*/function (_Component) {
           description: this.state.description
         }).then(function (res) {
           _this4.getAll();
+        })["catch"](function (error) {
+          _this4.setState({
+            message: error.response.data.message
+          });
         });
       }
     }
@@ -5425,11 +5436,20 @@ var Example = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this5 = this;
 
+      var error = '';
+
+      if (this.state.errorMessage) {
+        error = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "alert alert-danger",
+          children: this.state.errorMessage
+        });
+      }
+
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "container",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "row",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+          children: [error, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
             onSubmit: function onSubmit(e) {
               return _this5.submit(e, _this5.state.id);
             },
@@ -5467,7 +5487,7 @@ var Example = /*#__PURE__*/function (_Component) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tbody", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                  children: "Title"
+                  children: "Task Title"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                   children: "Description"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
